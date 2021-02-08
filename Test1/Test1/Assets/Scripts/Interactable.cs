@@ -52,9 +52,7 @@ public class Interactable : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.E))
         {
-            var canInteract = CanInteract();
-
-            if(canInteract) Interact();
+            if(CanInteract()) Interact();
         }
     }
 }
