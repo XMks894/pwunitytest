@@ -13,7 +13,7 @@ public class Interactable : MonoBehaviour
         _player.InteractWithInteractable();
     }
 
-    public bool CanInteract()
+    public virtual bool CanInteract()
     {
         if(_player == null)
         {
