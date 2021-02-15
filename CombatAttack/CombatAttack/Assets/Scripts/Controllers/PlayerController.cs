@@ -68,8 +68,11 @@ public class PlayerController : MonoBehaviour
         {
             _rb.AddForce(Vector3.back * MaxSpeed);
         }
+    }
 
-        if(Input.GetKey(KeyCode.Space))
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Space))
         {
             TryAttack();
         }
