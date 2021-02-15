@@ -36,8 +36,6 @@ public class NPCCombat : CombatBase
     {
         var combat = obj.GetComponent<CombatBase>();
 
-        Debug.Log($"#### TEST");
-
         if (combat == null) return;
 
         combat.Health -= damage;
