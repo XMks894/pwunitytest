@@ -1,18 +1,24 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
-public class CombatBase : MonoBehaviour
+public abstract class CombatBase : MonoBehaviour
 {
     public float Health = 100;
+    public float Damage = 20;
 
-    public void TakeDamage(float damage, PlayerCombat playerCombat)
+    protected readonly List<GameObject> List = new List<GameObject>();
+
+    protected abstract void TakeDamage(float damage, GameObject obj);
+
+    protected void DestroyCombat(GameObject obj)
     {
-        Health -= damage;
-
-        Debug.Log($"{gameObject.name} => Health: {Health}");
-
-        if(Health <= 0)
-        {
-            playerCombat.NPCDestroyed(gameObject);
-        }
+        List.Remove(obj);
+        Destroy(obj);
     }
+
+    protected abstract void OnCollisionEnter(Collision collision);
+
+    protected abstract void OnCollisionExit(Collision collision);
+
+    public abstract void TryAttack();
 }

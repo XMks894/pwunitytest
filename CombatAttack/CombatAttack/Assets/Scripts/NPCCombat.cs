@@ -1,44 +1,44 @@
 ﻿using UnityEngine;
-using System.Linq;
 
-public class PlayerCombat : CombatBase
+public class NPCCombat : CombatBase
 {
-    private const int NPCLayer = 8;
+    private const string PlayerTag = "Player";
 
     protected override void OnCollisionEnter(Collision collision)
     {
-        if(!IsNPC(collision.gameObject)) return;
+        if(!IsPlayer(collision.gameObject)) return;
 
         List.Add(collision.gameObject);
     }
 
     protected override void OnCollisionExit(Collision collision)
     {
-        if(!IsNPC(collision.gameObject)) return;
+        if(!IsPlayer(collision.gameObject)) return;
 
         List.Remove(collision.gameObject);
     }
 
-    private bool IsNPC(GameObject obj)
+    private bool IsPlayer(GameObject obj)
     {
-        return obj.layer == NPCLayer;
+        return obj.CompareTag(PlayerTag);
     }
 
     public override void TryAttack()
     {
-        //needs optimize to not use linq
-        var list = List.OrderBy(x => Vector3.Distance(transform.position, x.transform.position)).ToList();
+        //player is always one
 
-        if(list.Count == 0) return;
+        if(List.Count == 0) return;
 
-        TakeDamage(Damage, list[0]);
+        TakeDamage(Damage, List[0]);
     }
 
     protected override void TakeDamage(float damage, GameObject obj)
     {
         var combat = obj.GetComponent<CombatBase>();
 
-        if(combat == null) return;
+        Debug.Log($"#### TEST");
+
+        if (combat == null) return;
 
         combat.Health -= damage;
 
