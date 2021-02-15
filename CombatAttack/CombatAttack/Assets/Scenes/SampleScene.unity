@@ -282,7 +282,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Health: 100
-  Damage: 10
 --- !u!1 &438944088
 GameObject:
   m_ObjectHideFlags: 0
@@ -444,7 +443,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Health: 100
-  Damage: 10
 --- !u!1 &492238289
 GameObject:
   m_ObjectHideFlags: 0
@@ -814,7 +812,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Health: 100
-  Damage: 10
 --- !u!1 &1683906461
 GameObject:
   m_ObjectHideFlags: 0
@@ -829,6 +826,7 @@ GameObject:
   - component: {fileID: 1683906463}
   - component: {fileID: 1683906462}
   - component: {fileID: 1683906467}
+  - component: {fileID: 1683906468}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -937,6 +935,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d0efb9ba062e89541aa9123d7599405a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1683906468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1683906461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38ed1582ad4d1734ab36717d330a8d5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1780730466
