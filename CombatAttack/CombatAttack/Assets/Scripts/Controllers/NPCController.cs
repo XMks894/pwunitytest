@@ -1,32 +1,40 @@
-﻿using UnityEngine;
-using UnityEngine.AI;
+﻿using Pathfinding;
+using UnityEngine;
 
 public class NPCController : MonoBehaviour
 {
-    private NavMeshAgent _navMeshAgent;
-    private NPCCombat _npcCombat;
+    private AIDestinationSetter _aIDestinationSetter;
 
-    public Transform PlayerTransform;
+    public AIManager AIManagerInstance;
+
     private void Awake()
     {
-        _navMeshAgent = GetComponent<NavMeshAgent>();
-        _npcCombat = GetComponent<NPCCombat>();
+        _aIDestinationSetter = GetComponent<AIDestinationSetter>();
     }
 
     private void Start()
     {
-        Invoke(nameof(TryAttack), 0.5f);
+        InvokeRepeating(nameof(TryToFindPlayerArea), 2f, 2f);
     }
 
-    private void Update()
+    private void TryToFindPlayerArea()
     {
-        if(PlayerTransform == null) return;
+        var area = AIManagerInstance.TryToFindPlayerArea();
 
-        _navMeshAgent.SetDestination(PlayerTransform.position);
+        if(area == null)
+        {
+            _aIDestinationSetter.target = null;
+        }
+        else
+        {
+            //TODO set patrol for a few waypoints
+            //add fieldofview for NPC
+            _aIDestinationSetter.target = AIManagerInstance.GetPlayer();
+        }
     }
 
-    private void TryAttack()
+    private void OnDestroy()
     {
-        _npcCombat.TryAttack();
+        CancelInvoke();
     }
 }
